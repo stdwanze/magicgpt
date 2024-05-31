@@ -66,12 +66,13 @@ recorder
   }
   let frames = getInt16Frames(inputWaveFile, recog.frameLength);
   for (let frame of frames) {
+    console.log(".");
     isFinalized = recog.process(frame);
 
     if (isFinalized) {
       let inference = recog.getInference();
       console.log(
-        `Inference result of '${audioFileName}' using context '${contextName}':`
+        `Inference result of '' using context '':`
       );
       console.log(JSON.stringify(inference, null, 4));
       break;
@@ -79,7 +80,7 @@ recorder
   }
   if (!isFinalized) {
     console.log(
-      "Rhino did receive enough frames of audio to reach an inference conclusion."
+      "Rhino did not receive enough frames of audio to reach an inference conclusion."
     );
   }
 
