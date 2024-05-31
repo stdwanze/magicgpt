@@ -1,10 +1,10 @@
 let access = require("./accesskey").get();
 const {resolve} = require("path");
-const WaveFile = require("wavefile").WaveFile;
+const WaveFile = require('wavefile').WaveFile;
 var player = require('play-sound')(opts = { player: "play"});
 const AudioRecorder = require('node-audiorecorder');
 const fs = require("node:fs");
-const {Rhino} = require("@picovoice/rhino-node");
+const {Rhino, getInt16Frames } = require("@picovoice/rhino-node");
 const accessKey = access;
 
 const recog = new Rhino(accessKey , resolve("MagicGPT_de_raspberry-pi_v3_0_0.rhn"),0.5,5.0, true,resolve("rhino_params_de.pv") );
@@ -12,7 +12,7 @@ const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
 const options = {
     program: `arecord`, // Which program to use, either `arecord`, `rec`, or `sox`.
-    device: "plughw:1,0", // Recording device to use, e.g. `hw:1,0`
+    device: "plughw:0,0", // Recording device to use, e.g. `hw:1,0`
   
     bits: 16, // Sample size. (only for `rec` and `sox`)
     channels: 1, // Channel count.
@@ -48,6 +48,7 @@ recorder
   console.log("end");
     recorder.stop();
     process.stdin.pause();
+    
     // $ mplayer foo.mp3 
   /*player.play('output.wav', { play: [ '-v', 40 ] },function(err){
     if (err) throw err
