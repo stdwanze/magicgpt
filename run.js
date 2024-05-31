@@ -1,4 +1,4 @@
-var player = require('play-sound')(opts = {});
+var player = require('play-sound')(opts = { player: "play"});
 const AudioRecorder = require('node-audiorecorder');
 const fs = require("node:fs");
 
@@ -47,6 +47,6 @@ process.stdin.resume();
 console.warn('Press ctrl+c to exit or wait 5 seconds.');
 
 // $ mplayer foo.mp3 
-player.play('output.wav', { play: ['-v', 30 ] /* lower volume for afplay on OSX */ },function(err){
+player.play('output.wav', { play: [ '-v', 30 ] },function(err){
   if (err) throw err
 })
