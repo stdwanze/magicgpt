@@ -41,7 +41,7 @@ recorder
     recorder.stop();
     process.stdin.pause();
     // $ mplayer foo.mp3 
-  player.play('output.wav', { play: [ '-v', 30 ] },function(err){
+  player.play('output.wav', { play: [ '-v', 40 ] },function(err){
     if (err) throw err
     })
   }, 5000);
