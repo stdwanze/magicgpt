@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@picovoice/leopard-node": "^2.0.2",
+    "@picovoice/rhino-node": "^3.0.3",
     "node-audiorecorder": "^3.0.0",
     "play-sound": "^1.1.6"
   }

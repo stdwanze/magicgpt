@@ -3,10 +3,10 @@ const {resolve} = require("path");
 var player = require('play-sound')(opts = { player: "play"});
 const AudioRecorder = require('node-audiorecorder');
 const fs = require("node:fs");
-const { Leopard, LeopardActivationLimitReached }  = require("@picovoice/leopard-node");
+const {Rhino} = require("@picovoice/rhino-node");
 const accessKey = access;
 
-const leopard = new Leopard(accessKey ,{ modelPath: resolve("MagicGPT-leopard-v2.0.0-24-05-31--09-45-32.pv") });
+const recog = new Rhino(accessKey , resolve("magicgpt/MagicGPT_de_raspberry-pi_v3_0_0.rhn"),0.5,5.0, true,resolve("magicgpt/rhino_params_de.pv") );
 const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
 const options = {
@@ -49,10 +49,37 @@ recorder
   player.play('output.wav', { play: [ '-v', 40 ] },function(err){
     if (err) throw err
     })
-    const { transcript, words } = leopard.processFile('output.wav');
-    console.log(transcript);
-    console.log("----")
-    console.log(words);
+
+
+  let waveBuffer = fs.readFileSync('output.wav');
+  let inputWaveFile;
+  try {
+    inputWaveFile = new WaveFile(waveBuffer);
+  } catch (error) {
+    console.error(`Exception trying to read file as wave format: ${audioPath}`);
+    console.error(error);
+    return;
+  }
+  let frames = getInt16Frames(inputWaveFile, recog.frameLength);
+  for (let frame of frames) {
+    isFinalized = recog.process(frame);
+
+    if (isFinalized) {
+      let inference = recog.getInference();
+      console.log(
+        `Inference result of '${audioFileName}' using context '${contextName}':`
+      );
+      console.log(JSON.stringify(inference, null, 4));
+      break;
+    }
+  }
+  if (!isFinalized) {
+    console.log(
+      "Rhino did receive enough frames of audio to reach an inference conclusion."
+    );
+  }
+
+  recog.release();
     
   }, 5000);
 
