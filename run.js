@@ -1,5 +1,6 @@
 let access = require("./accesskey").get();
 const {resolve} = require("path");
+const WaveFile = require("wavefile").WaveFile;
 var player = require('play-sound')(opts = { player: "play"});
 const AudioRecorder = require('node-audiorecorder');
 const fs = require("node:fs");
