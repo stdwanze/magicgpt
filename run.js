@@ -46,10 +46,10 @@ recorder
     recorder.stop();
     process.stdin.pause();
     // $ mplayer foo.mp3 
-  player.play('output.wav', { play: [ '-v', 40 ] },function(err){
+  /*player.play('output.wav', { play: [ '-v', 40 ] },function(err){
     if (err) throw err
     })
-
+*/
 
   let waveBuffer = fs.readFileSync('output.wav');
   let inputWaveFile;
