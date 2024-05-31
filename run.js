@@ -37,6 +37,7 @@ recorder.on('error', function () {
     console.warn('Recording ended.');
   });
 
+  console.log("start");
 recorder
  .start()
  .stream()
@@ -44,6 +45,7 @@ recorder
 
 
  setTimeout(() => {
+  console.log("end");
     recorder.stop();
     process.stdin.pause();
     // $ mplayer foo.mp3 
