@@ -40,13 +40,13 @@ recorder
  setTimeout(() => {
     recorder.stop();
     process.stdin.pause();
+    // $ mplayer foo.mp3 
+  player.play('output.wav', { play: [ '-v', 30 ] },function(err){
+    if (err) throw err
+    })
   }, 5000);
 
   // Keep process alive.
 process.stdin.resume();
 console.warn('Press ctrl+c to exit or wait 5 seconds.');
 
-// $ mplayer foo.mp3 
-player.play('output.wav', { play: [ '-v', 30 ] },function(err){
-  if (err) throw err
-})
