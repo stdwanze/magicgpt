@@ -56,7 +56,7 @@ recorder
   try {
     inputWaveFile = new WaveFile(waveBuffer);
   } catch (error) {
-    console.error(`Exception trying to read file as wave format: ${audioPath}`);
+    console.error(`Exception trying to read file as wave format: `);
     console.error(error);
     return;
   }
