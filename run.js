@@ -1,7 +1,12 @@
+let access = require("./accesskey").get();
+
 var player = require('play-sound')(opts = { player: "play"});
 const AudioRecorder = require('node-audiorecorder');
 const fs = require("node:fs");
+const Leopard = require("@picovoice/leopard-node");
+const accessKey = access;
 
+const leopard = new Leopard(accessKey, { modelPath: "MagicGPT-leopard-v2.0.0-24-05-31--09-45-32.pv"});
 const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
 const options = {
@@ -44,6 +49,11 @@ recorder
   player.play('output.wav', { play: [ '-v', 40 ] },function(err){
     if (err) throw err
     })
+    const { transcript, words } = leopard.processFile('output.wav');
+    console.log(transcript);
+    console.log("----")
+    console.log(words);
+    
   }, 5000);
 
   // Keep process alive.
