@@ -1,12 +1,12 @@
 let access = require("./accesskey").get();
-
+const {resolve} = require("path");
 var player = require('play-sound')(opts = { player: "play"});
 const AudioRecorder = require('node-audiorecorder');
 const fs = require("node:fs");
-const Leopard = require("@picovoice/leopard-node");
+const { Leopard, LeopardActivationLimitReached }  = require("@picovoice/leopard-node");
 const accessKey = access;
 
-const leopard = new Leopard(accessKey, { modelPath: "MagicGPT-leopard-v2.0.0-24-05-31--09-45-32.pv"});
+const leopard = new Leopard(accessKey ,{ modelPath: resolve("MagicGPT-leopard-v2.0.0-24-05-31--09-45-32.pv") });
 const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
 const options = {
