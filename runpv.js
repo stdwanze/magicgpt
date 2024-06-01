@@ -4,7 +4,7 @@ var player = require('play-sound')(opts = { player: "play"});
 const { PvRecorder } = require("@picovoice/pvrecorder-node");
 const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
-const { getSpeak } = require("./speak");
+const { genSpeak } = require("./speak");
 var player = require('play-sound')(opts = { player: "aplay"});
 const accessKey = access;
 
