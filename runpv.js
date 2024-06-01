@@ -9,17 +9,19 @@ var player = require('play-sound')(opts = { player: "aplay"});
 const accessKey = access;
 
 
-function playSound(text){
+async function playSound(text){
 
    return new Promise((resolve) => {
     console.log("gen: "+text);
-    genSpeak(text);
+    genSpeak(text).then(()=>{
+
+      player.play('output.wav', { aplay: [ '-D', "plughw:1,0" ] }, function(err){
+        if(err) console.log(err)
+        console.log("finished");
+        resolve();
+      })
+    });
   
-    player.play('output.wav', { aplay: [ '-D', "plughw:1,0" ] }, function(err){
-      if(err) console.log(err)
-      console.log("finished");
-      resolve();
-    })
    
    });
   

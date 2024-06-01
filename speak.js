@@ -5,20 +5,21 @@ const fs = require("fs");
 //espeak.cmd = '/usr/bin/espeak';
  
 function genSpeak(text){
-  espeak.speak(text, ['-vde+f3'], function(err, wav) {
-    if (err) return console.error(err);
+  return new Promise((resolve) => {
+    espeak.speak(text, ['-vde+f3'], function(err, wav) {
+      if (err) return console.error(err);
+      
+      // get the raw binary wav data
+      var buffer = wav.buffer;
+      
+      // get a base64-encoded data URI
+      //var dataUri = wav.toDataUri();
     
-    // get the raw binary wav data
-    var buffer = wav.buffer;
-    
-    // get a base64-encoded data URI
-    //var dataUri = wav.toDataUri();
-  
-    fs.writeFileSync("output.wav",buffer);
+      fs.writeFileSync("output.wav",buffer);
+      resolve();
+    });
   });
-
 }
-
 module.exports = {
   genSpeak
 }
