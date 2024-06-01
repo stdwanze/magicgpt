@@ -27,7 +27,7 @@ async function micDemo() {
   console.log(recog.getContextInfo());
 
   console.log(
-    `Listening for speech within the context of '${contextName}'. Please speak your phrase into the microphone. `
+    `Listening for speech within the context . Please speak your phrase into the microphone. `
   );
   console.log("Press ctrl+c to exit.")
 
