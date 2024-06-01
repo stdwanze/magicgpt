@@ -11,14 +11,18 @@ const accessKey = access;
 
 function playSound(text){
 
-  console.log("gen: "+text);
-  genSpeak(text);
-
-  player.play('output.wav', { aplay: [ '-D', "plughw:1,0" ] }, function(err){
-    if(err) console.log(err)
-    console.log("finished");
-  })
-  console.log("gen: "+text);
+   return new Promise((resolve) => {
+    console.log("gen: "+text);
+    genSpeak(text);
+  
+    player.play('output.wav', { aplay: [ '-D', "plughw:1,0" ] }, function(err){
+      if(err) console.log(err)
+      console.log("finished");
+      resolve();
+    })
+   
+   });
+  
 }
 
 
@@ -55,7 +59,8 @@ async function micDemo() {
       console.log("Inference result:");
       console.log(JSON.stringify(inference, null, 4));
       console.log();
-      playSound(inference.intent != null ? inference.intent : "nichts verstanden");
+      
+      await playSound(inference.intent != null ? inference.intent : "nichts verstanden");
     }
   }
 
