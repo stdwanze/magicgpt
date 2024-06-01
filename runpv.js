@@ -19,12 +19,12 @@ async function micDemo() {
   for (let i = 0; i < devices.length; i++) {
       console.log(`index: ${i}, device name: ${devices[i]}`);
   }
-  const recorder = new PvRecorder(frameLength, 0);
+  const recorder = new PvRecorder(frameLength, 1);
   recorder.start();
 
   console.log("Context info:");
   console.log("-------------");
-  console.log(handle.getContextInfo());
+  console.log(recog.getContextInfo());
 
   console.log(
     `Listening for speech within the context of '${contextName}'. Please speak your phrase into the microphone. `
