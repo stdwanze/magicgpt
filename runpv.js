@@ -11,7 +11,12 @@ const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
 const frameLength = recog.frameLength;
 
-const recorder = new PvRecorder(frameLength, audioDeviceIndex);
+
+const devices = PvRecorder.getAvailableDevices();
+for (let i = 0; i < devices.length; i++) {
+    console.log(`index: ${i}, device name: ${devices[i]}`);
+}
+const recorder = new PvRecorder(frameLength, 0);
 recorder.start();
 
 console.log("Context info:");
