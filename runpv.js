@@ -11,12 +11,14 @@ const accessKey = access;
 
 function playSound(text){
 
+  console.log("gen: "+text);
   genSpeak(text);
 
   player.play('output.wav', { aplay: [ '-D', "plughw:1,0" ] }, function(err){
-    if (err) throw err
+    if(err) console.log(err)
+    console.log("finished");
   })
-
+  console.log("gen: "+text);
 }
 
 
