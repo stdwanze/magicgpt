@@ -4,7 +4,7 @@ const fs = require("fs");
 // optionally set the path to the `espeak` cli program if it's not in your PATH
 //espeak.cmd = '/usr/bin/espeak';
  
-espeak.speak('hello world', function(err, wav) {
+espeak.speak('richtig', ['-vde+f3'], function(err, wav) {
   if (err) return console.error(err);
   
   // get the raw binary wav data
