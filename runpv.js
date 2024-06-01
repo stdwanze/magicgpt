@@ -4,7 +4,21 @@ var player = require('play-sound')(opts = { player: "play"});
 const { PvRecorder } = require("@picovoice/pvrecorder-node");
 const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
+const { getSpeak } = require("./speak");
+var player = require('play-sound')(opts = { player: "aplay"});
 const accessKey = access;
+
+
+function playSound(text){
+
+  getSpeak(test);
+
+  player.play('output.wav', { afplay: [ '-D', "plughw:1,0" ] }, function(err){
+    if (err) throw err
+  })
+
+}
+
 
 let isInterrupted = false;
 async function micDemo() {
@@ -39,6 +53,7 @@ async function micDemo() {
       console.log("Inference result:");
       console.log(JSON.stringify(inference, null, 4));
       console.log();
+      playSound(inference.intent != null ? inference.intent : "nichts verstanden");
     }
   }
 
