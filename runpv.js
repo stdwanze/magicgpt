@@ -6,7 +6,7 @@ const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
 const accessKey = access;
 
-
+let isInterrupted = false;
 async function micDemo() {
 
   const recog = new Rhino(accessKey , resolve("MagicGPT_de_raspberry-pi_v3_0_0.rhn"),0.5,5.0, true,resolve("rhino_params_de.pv") );
