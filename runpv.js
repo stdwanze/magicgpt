@@ -11,7 +11,7 @@ const accessKey = access;
 
 function playSound(text){
 
-  getSpeak(test);
+  getSpeak(text);
 
   player.play('output.wav', { afplay: [ '-D', "plughw:1,0" ] }, function(err){
     if (err) throw err
