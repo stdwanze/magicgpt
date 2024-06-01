@@ -1,6 +1,6 @@
 let access = require("./accesskey").get();
 const {resolve} = require("path");
-var player = require('play-sound')(opts = { player: "play"});
+var player = require('play-sound')(opts = { player: "aplay"});
 const { PvRecorder } = require("@picovoice/pvrecorder-node");
 const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
@@ -13,7 +13,7 @@ function playSound(text){
 
   genSpeak(text);
 
-  player.play('output.wav', { afplay: [ '-D', "plughw:1,0" ] }, function(err){
+  player.play('output.wav', { aplay: [ '-D', "plughw:1,0" ] }, function(err){
     if (err) throw err
   })
 
