@@ -59,8 +59,9 @@ async function micDemo() {
       console.log("Inference result:");
       console.log(JSON.stringify(inference, null, 4));
       console.log();
-      
+      recorder.stop();
       await playSound(inference.intent != null ? inference.intent : "nichts verstanden");
+      recorder.start();
     }
   }
 
