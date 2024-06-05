@@ -65,6 +65,7 @@ async function micDemo() {
       if(inference.isUnderstood){
         await playSound(inference.intent != null ? inference.intent : "biepp");
       }
+      else await playSound("wie bitte?");
      
     }
   }
