@@ -6,7 +6,8 @@ const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
 const { genSpeak } = require("./speak");
 var player = require('play-sound')(opts = { player: "aplay"});
-const accessKey = access;
+var game = require("./playgame");
+const accessKey = access.rhino;
 
 
 async function playSound(text){
@@ -36,6 +37,7 @@ async function micDemo() {
 
   const frameLength = recog.frameLength;
   await playSound("Willkommen beim Magic Gin");
+  await game.startGame();
 
   const devices = PvRecorder.getAvailableDevices();
   for (let i = 0; i < devices.length; i++) {
@@ -59,12 +61,14 @@ async function micDemo() {
     if (isFinalized === true) {
       recorder.stop();
      
+      
       let inference = recog.getInference();
       console.log("Inference result:");
       console.log(JSON.stringify(inference, null, 4));
       console.log();
       if(inference.isUnderstood){
-        await playSound(inference.intent != null ? inference.intent : "biepp");
+        let response = await game.tick(inference.intent);
+        await playSound(response);
       }
       else await playSound("wie bitte?");
       recorder.start();

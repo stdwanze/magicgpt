@@ -12,6 +12,7 @@
     "@picovoice/pvrecorder-node": "^1.2.2",
     "@picovoice/rhino-node": "^3.0.3",
     "espeak": "^0.0.3",
+    "openai": "^4.48.1",
     "play-sound": "^1.1.6",
     "wavefile": "^11.0.0"
   }
