@@ -31,7 +31,7 @@ async function playSound(text){
 let isInterrupted = false;
 async function micDemo() {
 
-  const recog = new Rhino(accessKey , resolve("MagicGPT_de_raspberry-pi_v3_0_0.rhn"),0.5,5.0, true,resolve("rhino_params_de.pv") );
+  const recog = new Rhino(accessKey , resolve("MagicGPT_de_raspberry-pi_v3_0_0.rhn"),0.5,0.5, true,resolve("rhino_params_de.pv") );
   const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
   const frameLength = recog.frameLength;
@@ -56,9 +56,8 @@ async function micDemo() {
   while (!isInterrupted) {
     const pcm = await recorder.read();
     const isFinalized = recog.process(pcm);
-    console.log(".");
     if (isFinalized === true) {
-      console.log("-");
+     
       let inference = recog.getInference();
       console.log("Inference result:");
       console.log(JSON.stringify(inference, null, 4));
