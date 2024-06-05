@@ -56,7 +56,9 @@ async function micDemo() {
   while (!isInterrupted) {
     const pcm = await recorder.read();
     const isFinalized = recog.process(pcm);
+    console.log(".");
     if (isFinalized === true) {
+      console.log("-");
       let inference = recog.getInference();
       console.log("Inference result:");
       console.log(JSON.stringify(inference, null, 4));
