@@ -35,7 +35,7 @@ async function micDemo() {
   const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
   const frameLength = recog.frameLength;
-
+  await playSound("Willkommen beim Magic Gin");
 
   const devices = PvRecorder.getAvailableDevices();
   for (let i = 0; i < devices.length; i++) {
@@ -63,7 +63,7 @@ async function micDemo() {
       console.log();
       
       if(inference.isUnderstood){
-        await playSound(inference.intent != null ? inference.intent : "nichts verstanden");
+        await playSound(inference.intent != null ? inference.intent : "biepp");
       }
      
     }
