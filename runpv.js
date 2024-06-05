@@ -57,17 +57,17 @@ async function micDemo() {
     const pcm = await recorder.read();
     const isFinalized = recog.process(pcm);
     if (isFinalized === true) {
+      recorder.stop();
      
       let inference = recog.getInference();
       console.log("Inference result:");
       console.log(JSON.stringify(inference, null, 4));
       console.log();
-      
       if(inference.isUnderstood){
         await playSound(inference.intent != null ? inference.intent : "biepp");
       }
       else await playSound("wie bitte?");
-     
+      recorder.start();
     }
   }
 
