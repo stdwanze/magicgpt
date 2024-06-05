@@ -19,9 +19,9 @@ function setup(key) {
 
 
 
-function ask(message){
+async  function ask(message){
 
-    return new Promise((resolve,reject) => {
+    
 
         let h = _history;
         try{
@@ -31,23 +31,32 @@ function ask(message){
           })); 
           messageList.push({ role: "user", content: message }); 
       
-          _api.chat.completions.create({ 
-              model: "gpt-3.5-turbo", 
+          console.log("----------------");
+          
+          console.log("in history :"+JSON.stringify(h));
+          console.log("<<<<<<<<<<<>>>>>>>>>>");
+          console.log("send to :"+JSON.stringify(messageList));
+          console.log("----------------");
+          
+
+          let GPTOutput = await _api.chat.completions.create({ 
+              //model: "gpt-3.5-turbo-0125", 
+              model: "gpt-4o", 
               messages: messageList, 
-            }).then((GPTOutput)=>{
-                const output_text = GPTOutput.choices[0].message.content; 
-                console.log(output_text); 
-            
-                h.push([message, output_text]); 
-                resolve(output_text);
-            }); 
+            })
+            const output_text = GPTOutput.choices[0].message.content; 
+            h.push([message, output_text]); 
+            return output_text;
         }
         catch(e){
             reject(e);
         }
-    });
+    
+        return "error";
+    }
+ 
 
-}
+
 
 
 module.exports = {
