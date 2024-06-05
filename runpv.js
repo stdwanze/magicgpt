@@ -37,8 +37,8 @@ async function micDemo() {
 
   const frameLength = recog.frameLength;
   await playSound("Willkommen beim Magic Gin");
-  await game.startGame();
-
+  let initres = await game.startGame();
+  await playSound(initres);
   const devices = PvRecorder.getAvailableDevices();
   for (let i = 0; i < devices.length; i++) {
       console.log(`index: ${i}, device name: ${devices[i]}`);
