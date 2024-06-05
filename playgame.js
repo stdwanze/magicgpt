@@ -14,6 +14,7 @@ async function startGame(){
 }
 async function tick(answer){
 
+  //  chat.newSession();
     return await chat.ask(answer);
 
 
