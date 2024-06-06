@@ -41,8 +41,8 @@ async  function ask(message){
           
 
           let GPTOutput = await _api.chat.completions.create({ 
-              //model: "gpt-3.5-turbo-0125", 
-              model: "gpt-4o", 
+              model: "gpt-3.5-turbo-0125", 
+              //model: "gpt-4o", 
               messages: h, 
             })
             const output_text = GPTOutput.choices[0].message.content; 
