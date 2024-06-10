@@ -6,7 +6,7 @@ const fs = require("fs");
  
 function genSpeak(text){
   return new Promise((resolve) => {
-    espeak.speak(text, ['-vde+f2'], function(err, wav) {
+    espeak.speak(text, ['-vde+f2', '-s 130'], function(err, wav) {
       if (err) return console.error(err);
       
       // get the raw binary wav data
