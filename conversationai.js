@@ -6,8 +6,8 @@ let rules = {
 
     Abbruch : { validStates: [/*all*/], state : "initial" },
     Tierspiel: { validStates: [ "initial"], state : "tierspiel:beginn" },
-    Ja: { validStates: ["tierspiel","tierspiel:eingabe"], state: "tierspiel:eingabe" },
-    Nein: { validStates: ["tierspiel","tierspiel:eingabe"], state: "tierspiel:eingabe" }
+    Ja: { validStates: ["tierspiel:beginn","tierspiel:eingabe"], state: "tierspiel:eingabe" },
+    Nein: { validStates: ["tierspiel:beginn","tierspiel:eingabe"], state: "tierspiel:eingabe" }
 
 }
 
