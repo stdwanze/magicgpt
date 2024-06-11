@@ -29,7 +29,7 @@ function tickState(intent){
 }
 function isValid(rule,currstate){
 
-    return rule.validStates.includes(currstate)
+    return rule.validStates.length == 0 || rule.validStates.includes(currstate)
 
 }
 function apply(target){
