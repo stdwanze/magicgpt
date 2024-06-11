@@ -11,8 +11,11 @@ let rules = {
 
 }
 
-function tickState(intent){
+function setup(ai){
+    game.setup(ai);
+}
 
+function tickState(intent){
     console.log("tick state machine");
     let target = rules[intent];
     console.log("intent found: "+JSON.stringify(target));
@@ -38,7 +41,6 @@ function apply(target){
 
 }
 async function runIntent(state,intent){
-
     console.log("run intent: "+intent +" in state: "+state);
     let response = "";
     switch(state){
@@ -55,6 +57,7 @@ async function runIntent(state,intent){
 module.exports = {
 
     runIntent,
-    tickState
+    tickState,
+    setup
 }
 

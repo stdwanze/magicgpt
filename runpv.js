@@ -1,6 +1,5 @@
 let access = require("./accesskey").get();
 const {resolve} = require("path");
-var player = require('play-sound')(opts = { player: "aplay"});
 const { PvRecorder } = require("@picovoice/pvrecorder-node");
 const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
@@ -11,9 +10,8 @@ const conversationai = require("./conversationai");
 const accessKey = access.rhino;
 
 const ai = chat.build(access.openai);
-chat.setup(ai);
 speaker.setup(ai);
-
+conversationai.setup(ai);
 async function playSound(text){
 
    return new Promise((resolve) => {
