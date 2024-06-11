@@ -25,6 +25,11 @@ function tickState(intent){
     else {return -1 }
 
 }
+function isValid(rule,currstate){
+
+    return rule.validStates.includes(currstate)
+
+}
 function apply(target){
 
     state = target.state;
