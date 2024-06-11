@@ -22,7 +22,7 @@ function tickState(intent){
             return -2
         }
         apply(target);
-        return intent;
+        return state;
     }
     else {return -1 }
 
