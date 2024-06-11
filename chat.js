@@ -7,7 +7,7 @@ let _history =[];
 
 
 function newSession(){
-    _histroy = [];
+    _history = [];
 }
 
 function setup(key) {
