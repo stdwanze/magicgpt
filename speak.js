@@ -4,6 +4,7 @@ const fs = require("fs");
 // optionally set the path to the `espeak` cli program if it's not in your PATH
 //espeak.cmd = '/usr/bin/espeak';
  
+function setup(){}
 function genSpeak(text){
   return new Promise((resolve) => {
     espeak.speak(text, ['-vde+f2', '-s 140'], function(err, wav) {
@@ -21,7 +22,8 @@ function genSpeak(text){
   });
 }
 module.exports = {
-  genSpeak
+  genSpeak,
+  setup
 }
 
 
