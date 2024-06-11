@@ -36,9 +36,9 @@ async function micDemo() {
   const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
   const frameLength = recog.frameLength;
-  await playSound("Willkommen beim magischen jin");
+  await playSound("Willkommen beim magischen gin ... ich starte");
   //let initres = await game.startGame();
-  await playSound("was möchtest du spielen?");
+
   const devices = PvRecorder.getAvailableDevices();
   for (let i = 0; i < devices.length; i++) {
       console.log(`index: ${i}, device name: ${devices[i]}`);
@@ -54,6 +54,10 @@ async function micDemo() {
     `Listening for speech within the context . Please speak your phrase into the microphone. `
   );
   console.log("Press ctrl+c to exit.")
+
+  recorder.stop()
+  await playSound("was möchtest du spielen?");
+  recorder.start()
 
   while (!isInterrupted) {
     const pcm = await recorder.read();
