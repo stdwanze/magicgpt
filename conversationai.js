@@ -44,7 +44,7 @@ async function runIntent(state,intent){
     switch(state){
         case "tierspiel:eingabe": response = await game.tick(intent);break;
         case "initial": response = "Abbruch bestätigt" ;break;
-        case "tierspiel:beginn": let response = await game.startGame();
+        case "tierspiel:beginn": response = await game.startGame();
 
     } 
     return response;
