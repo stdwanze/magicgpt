@@ -10,11 +10,15 @@ function newSession(){
     _history = [];
 }
 
-function setup(key) {
+function build(key) {
   
       _api = new ai.OpenAI({ 
         apiKey: key 
       }); 
+      return _api;
+}
+function setup(ai){
+    _api = ai;
 }
 
 
@@ -63,5 +67,6 @@ async  function ask(message){
 module.exports = {
     setup,
     ask,
-    newSession
+    newSession,
+    build
 }

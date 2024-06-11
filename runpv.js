@@ -4,17 +4,21 @@ var player = require('play-sound')(opts = { player: "aplay"});
 const { PvRecorder } = require("@picovoice/pvrecorder-node");
 const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
-const { genSpeak } = require("./speak");
+const speaker = require("./speech");
+const chat = require("./chat");
 var player = require('play-sound')(opts = { player: "aplay"});
 const conversationai = require("./conversationai");
 const accessKey = access.rhino;
 
+const ai = chat.build(access.openai);
+chat.setup(ai);
+speaker.setup(ai);
 
 async function playSound(text){
 
    return new Promise((resolve) => {
     console.log("gen: "+text);
-    genSpeak(text).then(()=>{
+    speaker.genSpeak(text).then(()=>{
 
       player.play('output.wav', { aplay: [ '-D', "plughw:1,0" ] }, function(err){
         if(err) console.log(err)
