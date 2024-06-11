@@ -6,7 +6,7 @@ const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
 const { genSpeak } = require("./speak");
 var player = require('play-sound')(opts = { player: "aplay"});
-var game = require("./playgame");
+const conversationai = require("./conversationai");
 const accessKey = access.rhino;
 
 
@@ -36,9 +36,9 @@ async function micDemo() {
   const fileStream = fs.createWriteStream("output.wav", { encoding: 'binary' });
 
   const frameLength = recog.frameLength;
-  await playSound("Willkommen beim Magic Gin");
-  let initres = await game.startGame();
-  await playSound(initres);
+  await playSound("Willkommen beim magischen jin");
+  //let initres = await game.startGame();
+  await playSound("was möchtest du spielen?");
   const devices = PvRecorder.getAvailableDevices();
   for (let i = 0; i < devices.length; i++) {
       console.log(`index: ${i}, device name: ${devices[i]}`);
@@ -67,8 +67,12 @@ async function micDemo() {
       console.log(JSON.stringify(inference, null, 4));
       console.log();
       if(inference.isUnderstood){
-        let response = await game.tick(inference.intent);
-        await playSound(response);
+        let state = conversationai.tickState(inference.intent);
+        if(state == -1 || state == -2) await playSound("Deine Antwort passt hier nicht");
+        else {
+          let response = await conversationai.runIntent(state,inference.intent); // game.tick(inference.intent);
+          await playSound(response);
+        }
       }
       else await playSound("wie bitte?");
       recorder.start();
