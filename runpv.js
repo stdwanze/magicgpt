@@ -4,7 +4,7 @@ var player = require('play-sound')(opts = { player: "aplay"});
 const { PvRecorder } = require("@picovoice/pvrecorder-node");
 const fs = require("node:fs");
 const {Rhino } = require("@picovoice/rhino-node");
-const speaker = require("./speech");
+const speaker = require("./speak");
 const chat = require("./chat");
 var player = require('play-sound')(opts = { player: "aplay"});
 const conversationai = require("./conversationai");
