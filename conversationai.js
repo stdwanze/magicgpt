@@ -13,6 +13,7 @@ let rules = {
 
 function tickState(intent){
 
+    console.log("tick state machine");
     let target = rules[intent];
     if(target != null){
 
@@ -37,6 +38,7 @@ function apply(target){
 }
 async function runIntent(state,intent){
 
+    console.log("run intent: "+intent +" in state: "+state);
     let response = "";
     switch(state){
         case "tierspiel:eingabe": response = await game.tick(intent);break;
