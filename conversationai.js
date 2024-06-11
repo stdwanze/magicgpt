@@ -15,6 +15,7 @@ function tickState(intent){
 
     console.log("tick state machine");
     let target = rules[intent];
+    console.log("intent found: "+JSON.stringify(target));
     if(target != null){
 
         if(!isValid(target,state)){
