@@ -1,11 +1,11 @@
 
 const fs = require("node:fs")
 const path = require("node:path")
-let _openai = null;
+let _api = null;
 const speechFile = path.resolve(__dirname, './output.wav');
 
 function setup(openai){
-    _openai = openai
+    _api = openai
 }
 
 
