@@ -4,6 +4,7 @@ let game = require("./playgame");
 
 let rules = {
 
+    Wartung : { validStates: [ "initial"] , state: "stop"},
     Abbruch : { validStates: [/*all*/], state : "initial" },
     Tierspiel: { validStates: [ "initial"], state : "tierspiel:beginn" },
     Ja: { validStates: ["tierspiel:beginn","tierspiel:eingabe"], state: "tierspiel:eingabe" },
@@ -46,8 +47,8 @@ async function runIntent(state,intent){
     switch(state){
         case "tierspiel:eingabe": response = await game.tick(intent);break;
         case "initial": response = "Abbruch bestätigt. Was willst du spielen?" ;break;
-        case "tierspiel:beginn": response = await game.startGame();
-
+        case "tierspiel:beginn": response = await game.startGame(); break;
+        case "stop": response = -1;
     } 
     return response;
 

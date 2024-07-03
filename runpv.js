@@ -77,6 +77,7 @@ async function micDemo() {
         if(state == -1 || state == -2) await playSound("Deine Antwort passt hier nicht");
         else {
           let response = await conversationai.runIntent(state,inference.intent); // game.tick(inference.intent);
+          if(response == -1) {   await playSound("Beende"); recorder.release(); return };
           await playSound(response);
         }
       }
