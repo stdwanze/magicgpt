@@ -4,7 +4,7 @@ let game = require("./playgame");
 
 let rules = {
 
-    Wartung : { validStates: [ "initial"] , state: "stop"},
+    StopScript : { validStates: [ "initial"] , state: "stop"},
     Abbruch : { validStates: [/*all*/], state : "initial" },
     Tierspiel: { validStates: [ "initial"], state : "tierspiel:beginn" },
     Ja: { validStates: ["tierspiel:beginn","tierspiel:eingabe"], state: "tierspiel:eingabe" },
