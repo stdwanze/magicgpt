@@ -6,13 +6,17 @@ function setup(ai){
   chat.setup(ai)
 }
 
-async function startGame(){
+async function startGame(gametype){
 
         chat.newSession();
-      //  chat.setup(access.openai);
+
+        if(gametype == "quiz"){
+          let res = await chat.ask("ich will ein quiz spielen wie bei wer wird millionär aber ohne joker");
+        }
+
+        else {
         let res = await chat.ask("ich will ein tier ratespiel spielen bei dem ich mir ein tier ausdenke und du es durch ja nein fragen errätst");
-       // res = await chat.ask("ich habe mir ein tier ausgedacht");
-        
+        }
         return res;    
     
  
