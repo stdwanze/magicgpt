@@ -11,7 +11,7 @@ async function startGame(gametype){
         chat.newSession();
         let res = "";
         if(gametype == "quiz"){
-           res = await chat.ask("ich will ein quiz spielen wie bei wer wird millionär aber ohne joker");
+           res = await chat.ask("ich will ein quiz spielen wie bei wer wird millionär für kinder aber ohne joker");
         }
 
         else {
