@@ -15,7 +15,7 @@ async function startGame(gametype){
         }
 
         else {
-         res = await chat.ask("ich will ein tier ratespiel spielen bei dem ich mir ein tier ausdenke und du es durch ja nein fragen errätst");
+         res = await chat.ask("ich will ein tier ratespiel mit dir spielen bei dem ich mir ein tier ausdenke und du es durch ja nein fragen errätst");
         }
         return res;    
     
